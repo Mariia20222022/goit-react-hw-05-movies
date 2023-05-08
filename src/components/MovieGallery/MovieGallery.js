@@ -19,13 +19,13 @@ const MovieGallery = ({ movies }) => {
     </div>
   );
 };
-// MovieGallery.propTypes = {
-//   movies: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.number.isRequired,
-//       title: PropTypes.string.isRequired,
-//     })
-//   ).isRequired,
-// };
+MovieGallery.propTypes = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+};
 
 export default MovieGallery;

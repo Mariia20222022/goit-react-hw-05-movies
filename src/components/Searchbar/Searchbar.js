@@ -10,7 +10,6 @@ const Searchbar = ({ onSearch }) => {
   const baseURL = 'https://api.themoviedb.org/3';
   const apiKey = 'acee11b4b18b6e03b694743e5006f3ac';
   const language = 'en-US';
-  const [movieId, setMovieId] = useState('');
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -49,13 +48,13 @@ const Searchbar = ({ onSearch }) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    onSearch(query, movieId);
+    onSearch(query);
     setQuery('');
   };
 
-  const searchedMovies = movies.filter(movie => movie.title.includes(movieId));
+  const searchedMovies = movies.filter(movie => movie.title.includes(query));
 
-  console.log(movieId, searchedMovies);
+  console.log(query, searchedMovies);
 
   return (
     <>
@@ -96,7 +95,9 @@ const Searchbar = ({ onSearch }) => {
     </>
   );
 };
+
 Searchbar.propTypes = {
   onSearch: PropTypes.func.isRequired,
 };
+
 export default Searchbar;

@@ -78,7 +78,12 @@ const MovieGalleryItem = ({ movieId }) => {
         <Link to={`/movies/${movieId}`}></Link>
         <img
           className={css.img}
-          src={baseImgURL + movie.poster_path}
+          // src={baseImgURL + movie.poster_path}
+          src={
+            movie.poster_path
+              ? baseImgURL + movie.poster_path
+              : 'https://via.placeholder.com/500x750?text=No+Image'
+          }
           alt={movie.title}
         />
 
