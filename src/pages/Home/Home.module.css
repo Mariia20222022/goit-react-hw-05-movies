@@ -1,0 +1,21 @@
+.nav {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.link {
+  text-decoration: none;
+  color: #fff;
+  margin-right: 16px;
+  transition: color 0.3s;
+}
+
+.link:focus,
+.link:hover {
+  color: #f00;
+}
+.title {
+  margin-top: 10px;
+  text-align: center;
+}

@@ -1,0 +1,38 @@
+ul {
+  list-style: none;
+
+  padding: 0;
+}
+
+li {
+  margin-right: 20px;
+}
+.nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  font-size: 40px;
+  outline: 1px solid rgb(247, 244, 244);
+  height: 100px;
+}
+.navlink {
+  text-decoration: none;
+  color: white;
+}
+.navlink:hover {
+  color: orange;
+}
+.navlink:focus {
+  color: orange;
+}
+.title {
+  color: white;
+}
+.wrapper {
+  background-color: orange;
+  margin-right: 60px;
+}
+.active {
+  color: orange;
+}
