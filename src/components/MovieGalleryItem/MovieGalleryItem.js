@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 // import BackIcon from 'components/Icons/BackIcon';
 
-const MovieGalleryItem = ({ movieId, from }) => {
+const MovieGalleryItem = ({ movieId }) => {
   const location = useLocation();
 
   const baseImgURL = 'https://image.tmdb.org/t/p/w500';
