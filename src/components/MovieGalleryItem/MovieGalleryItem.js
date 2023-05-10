@@ -69,10 +69,9 @@ const MovieGalleryItem = ({ movieId }) => {
   return (
     <>
       <div className={css.box}>
-        <button className={css.customButton}>
-          <Link to={location.state?.from ?? '/'}></Link>
-          Back
-        </button>
+        <Link to={location.state?.from ?? '/'}>
+          <button className={css.customButton}>Back</button>
+        </Link>
       </div>
       <li className={css.item}>
         <Link to={`/movies/${movieId}`} />
