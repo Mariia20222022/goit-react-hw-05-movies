@@ -1,8 +1,44 @@
+// import { Link } from 'react-router-dom';
+// import PropTypes from 'prop-types';
+// import MovieIcon from 'components/Icons/MovieIcon';
+// import { useLocation } from 'react-router-dom';
+// import css from './MovieGallery.module.css';
+// const MovieGallery = ({ movies }) => {
+//   const location = useLocation();
+//   return (
+//     <div>
+//       <ul className={css.gallery}>
+//         {movies.map(movie => (
+//           <li className={css.item} key={movie.id}>
+//             <Link
+//               className={css.link}
+//               to={`/movies/${movie.id}`}
+//               state={{ from: location }}
+//             >
+//               <MovieIcon />
+//               {movie.title}
+//             </Link>
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// };
+// MovieGallery.propTypes = {
+//   movies: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       id: PropTypes.number.isRequired,
+//       title: PropTypes.string.isRequired,
+//     })
+//   ).isRequired,
+// };
+
+// export default MovieGallery;
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import MovieIcon from 'components/Icons/MovieIcon';
-
 import css from './MovieGallery.module.css';
+
 const MovieGallery = ({ movies }) => {
   return (
     <div>
@@ -19,6 +55,7 @@ const MovieGallery = ({ movies }) => {
     </div>
   );
 };
+
 MovieGallery.propTypes = {
   movies: PropTypes.arrayOf(
     PropTypes.shape({

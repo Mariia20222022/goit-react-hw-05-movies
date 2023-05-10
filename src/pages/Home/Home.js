@@ -1,5 +1,6 @@
 import MovieGallery from 'components/MovieGallery/MovieGallery';
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import css from './Home.module.css';
 
 const apiKey = 'acee11b4b18b6e03b694743e5006f3ac';
@@ -7,7 +8,8 @@ const apiKey = 'acee11b4b18b6e03b694743e5006f3ac';
 const Home = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  const location = useLocation();
+  console.log(location.state);
   useEffect(() => {
     const fetchMovies = async () => {
       try {
@@ -33,7 +35,7 @@ const Home = () => {
       ) : (
         <>
           <h1 className={css.title}>Trending today</h1>
-          <MovieGallery movies={movies} />
+          <MovieGallery movies={movies} state={{ from: location }} />
         </>
       )}
     </>

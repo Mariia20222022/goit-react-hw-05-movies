@@ -1,4 +1,4 @@
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 
 import MovieGalleryItem from 'components/MovieGalleryItem/MovieGalleryItem';
 import CastIcon from 'components/Icons/CastIcon';
@@ -9,10 +9,13 @@ import css from './MovieDetails.module.css';
 const MovieDetails = () => {
   const params = useParams();
   const { movieId } = params;
-
+  const location = useLocation();
   return (
     <>
-      <MovieGalleryItem movieId={movieId} />
+      <MovieGalleryItem
+        movieId={movieId}
+        from={location.state && location.state.from}
+      />
       <div className={css.wrapper}>
         <ul className={css.list}>
           <li>

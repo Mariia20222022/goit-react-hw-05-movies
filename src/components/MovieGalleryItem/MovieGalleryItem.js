@@ -1,14 +1,11 @@
 import css from './MovieGalleryItem.module.css';
 import PropTypes from 'prop-types';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import BackIcon from 'components/Icons/BackIcon';
+// import { useLocation, useNavigate } from 'react-router-dom';
+// import BackIcon from 'components/Icons/BackIcon';
 
-const MovieGalleryItem = ({ movieId }) => {
-  let navigate = useNavigate();
-  function handleClick() {
-    navigate('/');
-  }
+const MovieGalleryItem = ({ movieId, from }) => {
   const baseImgURL = 'https://image.tmdb.org/t/p/w500';
   const apiKey = 'acee11b4b18b6e03b694743e5006f3ac';
   const language = 'en-US';
@@ -66,16 +63,22 @@ const MovieGalleryItem = ({ movieId }) => {
 
   const rating = calculateRating(movie.vote_average);
   console.log(genres);
-
+  // const fromPage = location.pathname;
+  // console.log(fromPage);
+  function handleClick() {
+    if (from) {
+      window.location.href = from;
+    }
+  }
   return (
     <>
       <div className={css.box}>
         <button className={css.customButton} onClick={handleClick}>
-          <BackIcon /> Back
+          Back
         </button>
       </div>
       <li className={css.item}>
-        <Link to={`/movies/${movieId}`}></Link>
+        <Link to={`/movies/${movieId}`} />
         <img
           className={css.img}
           // src={baseImgURL + movie.poster_path}
@@ -90,7 +93,10 @@ const MovieGalleryItem = ({ movieId }) => {
         <div className={css.container}>
           <div className={css.wrapper}>
             <h2 className={css.title}>{movie.original_title}</h2>({' '}
-            <p className={css.date}>{movie.release_date.split('-')[0]}</p>)
+            <p className={css.date}>
+              {movie.release_date ? movie.release_date.split('-')[0] : ''}
+            </p>
+            )
           </div>
           <div>
             <h3 className={css.subtitle}>User score:</h3>
@@ -99,7 +105,7 @@ const MovieGalleryItem = ({ movieId }) => {
           <h3 className={css.subtitle}>Overview:</h3>
           <p className={css.overview}>{movie.overview}</p>
 
-          {movie.genres.length > 0 && (
+          {movie.genres && movie.genres.length > 0 && (
             <div>
               <h3 className={css.subtitle}>Genres:</h3>
               <p className={css.genre}>

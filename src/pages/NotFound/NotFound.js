@@ -12,7 +12,7 @@ const NotFound = () => {
         width="128"
         height="128"
         fill="currentColor"
-        class="bi bi-emoji-smile-upside-down"
+        className="bi bi-emoji-smile-upside-down"
         viewBox="0 0 16 16"
       >
         <path d="M8 1a7 7 0 1 0 0 14A7 7 0 0 0 8 1zm0-1a8 8 0 1 1 0 16A8 8 0 0 1 8 0z"></path>

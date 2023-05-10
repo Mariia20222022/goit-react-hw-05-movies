@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import {
+  Link,
+  useNavigate,
+  useLocation,
+  useSearchParams,
+} from 'react-router-dom';
 import PropTypes from 'prop-types';
 import css from './Searchbar.module.css';
 import MovieIcon from 'components/Icons/MovieIcon';
@@ -14,47 +19,60 @@ const Searchbar = ({ onSearch }) => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   let navigate = useNavigate();
+  let location = useLocation();
+  console.log(location.state);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   function handleClick() {
-    navigate('/');
+    navigate(-1);
   }
 
   useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        setLoading(true);
+    const queryParam = searchParams.get('query');
 
-        const searchParams = new URLSearchParams({
-          api_key: apiKey,
-          language: language,
-          query: query,
-          page: '1',
-          include_adult: 'false',
-        });
+    if (queryParam) {
+      setQuery(queryParam);
+    }
+  }, [searchParams]);
 
-        const response = await fetch(`${baseURL}/search/movie?${searchParams}`);
-        const moviesData = await response.json();
-        setMovies(moviesData.results);
-        console.log(moviesData.results);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  useEffect(() => {
+    if (query) {
+      const fetchMovies = async () => {
+        try {
+          setLoading(true);
 
-    fetchMovies();
+          const searchParams = new URLSearchParams({
+            api_key: apiKey,
+            language: language,
+            query: query,
+            page: '1',
+            include_adult: 'false',
+          });
+
+          const response = await fetch(
+            `${baseURL}/search/movie?${searchParams}`
+          );
+          const moviesData = await response.json();
+          setMovies(moviesData.results);
+          console.log(moviesData.results);
+        } catch (error) {
+          console.log(error);
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      fetchMovies();
+    }
   }, [query]);
 
   const handleSubmit = event => {
     event.preventDefault();
-    onSearch(query);
-    setQuery('');
+    searchParams.set('query', query);
+    setSearchParams(searchParams);
   };
 
-  const searchedMovies = movies.filter(movie => movie.title.includes(query));
-
-  console.log(query, searchedMovies);
+  console.log(query, movies);
 
   return (
     <>
@@ -82,9 +100,23 @@ const Searchbar = ({ onSearch }) => {
         <p>Loading...</p>
       ) : (
         <ul>
-          {searchedMovies.map(movie => (
+          {movies.map(movie => (
             <li key={movie.id}>
-              <Link className={css.link} to={`/movies/${movie.id}`}>
+              {/* <Link
+                className={css.link}
+                to={`/movies/${movie.id}`}
+
+              >
+                <MovieIcon />
+                {movie.title}
+              </Link> */}
+              <Link
+                className={css.link}
+                to={{
+                  pathname: `/movies/${movie.id}`,
+                  state: { from: location.state?.from || location.pathname },
+                }}
+              >
                 <MovieIcon />
                 {movie.title}
               </Link>

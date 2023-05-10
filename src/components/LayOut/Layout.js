@@ -1,7 +1,10 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import MovieIcon from 'components/Icons/MovieIcon';
+
 import css from './LayOut.module.css';
 const Layout = () => {
+  // const [showNotFoundLink, setShowNotFoundLink] = useState(false);
+  const showNotFoundLink = false;
   return (
     <div>
       <ul>
@@ -19,6 +22,11 @@ const Layout = () => {
               Movies
             </NavLink>
           </li>
+          {showNotFoundLink && (
+            <li>
+              <NavLink to="*">Not Found</NavLink>
+            </li>
+          )}
         </nav>
       </ul>
       <main>

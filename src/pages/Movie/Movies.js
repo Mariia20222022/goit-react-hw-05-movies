@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Searchbar from 'components/Searchbar/Searchbar';
 import MovieGallery from 'components/MovieGallery/MovieGallery';
@@ -9,7 +9,8 @@ const Movies = () => {
 
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const location = useLocation();
+  console.log(location.state);
   const handleSearch = async query => {
     try {
       setLoading(true);
@@ -28,9 +29,9 @@ const Movies = () => {
 
   return (
     <div>
-      <Searchbar onSearch={handleSearch} />
+      <Searchbar onSearch={handleSearch} state={location.state} />
       {loading && <p>Loading...</p>}
-      {!loading && <MovieGallery movies={movies} />}
+      {!loading && <MovieGallery movies={movies} state={location.state} />}
     </div>
   );
 };
