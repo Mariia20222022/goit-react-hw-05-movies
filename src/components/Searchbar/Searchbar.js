@@ -3,7 +3,6 @@ import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import css from './Searchbar.module.css';
 import MovieIcon from 'components/Icons/MovieIcon';
-// import BackIcon from 'components/Icons/BackIcon';
 import SearchIcon from 'components/Icons/SearchIcon';
 
 const Searchbar = ({ onSearch }) => {
@@ -26,39 +25,32 @@ const Searchbar = ({ onSearch }) => {
     }
   }, [searchParams]);
 
-  useEffect(() => {
-    if (query) {
-      const fetchMovies = async () => {
-        try {
-          setLoading(true);
+  const fetchMovies = async () => {
+    try {
+      setLoading(true);
 
-          const searchParams = new URLSearchParams({
-            api_key: apiKey,
-            language: language,
-            query: query,
-            page: '1',
-            include_adult: 'false',
-          });
+      const searchParams = new URLSearchParams({
+        api_key: apiKey,
+        language: language,
+        query: query,
+        page: '1',
+        include_adult: 'false',
+      });
 
-          const response = await fetch(
-            `${baseURL}/search/movie?${searchParams}`
-          );
-          const moviesData = await response.json();
-          setMovies(moviesData.results);
-          console.log(moviesData.results);
-        } catch (error) {
-          console.log(error);
-        } finally {
-          setLoading(false);
-        }
-      };
-
-      fetchMovies();
+      const response = await fetch(`${baseURL}/search/movie?${searchParams}`);
+      const moviesData = await response.json();
+      setMovies(moviesData.results);
+      console.log(moviesData.results);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
     }
-  }, [query]);
+  };
 
   const handleSubmit = event => {
     event.preventDefault();
+    fetchMovies();
     searchParams.set('query', query);
     setSearchParams(searchParams);
   };
@@ -68,10 +60,6 @@ const Searchbar = ({ onSearch }) => {
   return (
     <>
       <form className={css.form} onSubmit={handleSubmit}>
-        {/* <button onClick={handleClick} className={css.customButton}>
-          <BackIcon />
-          Back
-        </button> */}
         <input
           className={css.input}
           type="text"
