@@ -2,10 +2,12 @@ import css from './MovieGalleryItem.module.css';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-// import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 // import BackIcon from 'components/Icons/BackIcon';
 
 const MovieGalleryItem = ({ movieId, from }) => {
+  const location = useLocation();
+
   const baseImgURL = 'https://image.tmdb.org/t/p/w500';
   const apiKey = 'acee11b4b18b6e03b694743e5006f3ac';
   const language = 'en-US';
@@ -63,17 +65,12 @@ const MovieGalleryItem = ({ movieId, from }) => {
 
   const rating = calculateRating(movie.vote_average);
   console.log(genres);
-  // const fromPage = location.pathname;
-  // console.log(fromPage);
-  function handleClick() {
-    if (from) {
-      window.location.href = from;
-    }
-  }
+
   return (
     <>
       <div className={css.box}>
-        <button className={css.customButton} onClick={handleClick}>
+        <button className={css.customButton}>
+          <Link to={location.state?.from ?? '/'}></Link>
           Back
         </button>
       </div>

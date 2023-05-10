@@ -35,7 +35,7 @@ const Home = () => {
       ) : (
         <>
           <h1 className={css.title}>Trending today</h1>
-          <MovieGallery movies={movies} state={{ from: location }} />
+          <MovieGallery movies={movies} />
         </>
       )}
     </>

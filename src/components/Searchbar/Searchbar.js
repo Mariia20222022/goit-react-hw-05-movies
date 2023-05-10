@@ -23,10 +23,6 @@ const Searchbar = ({ onSearch }) => {
   console.log(location.state);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  function handleClick() {
-    navigate(-1);
-  }
-
   useEffect(() => {
     const queryParam = searchParams.get('query');
 
@@ -77,10 +73,10 @@ const Searchbar = ({ onSearch }) => {
   return (
     <>
       <form className={css.form} onSubmit={handleSubmit}>
-        <button onClick={handleClick} className={css.customButton}>
+        {/* <button onClick={handleClick} className={css.customButton}>
           <BackIcon />
           Back
-        </button>
+        </button> */}
         <input
           className={css.input}
           type="text"
@@ -102,6 +98,7 @@ const Searchbar = ({ onSearch }) => {
         <ul>
           {movies.map(movie => (
             <li key={movie.id}>
+              state={{ from: location }}
               {/* <Link
                 className={css.link}
                 to={`/movies/${movie.id}`}

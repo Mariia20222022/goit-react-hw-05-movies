@@ -29,9 +29,9 @@ const Movies = () => {
 
   return (
     <div>
-      <Searchbar onSearch={handleSearch} state={location.state} />
+      <Searchbar onSearch={handleSearch} state={{ from: location }} />
       {loading && <p>Loading...</p>}
-      {!loading && <MovieGallery movies={movies} state={location.state} />}
+      {!loading && <MovieGallery movies={movies} />}
     </div>
   );
 };
