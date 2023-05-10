@@ -78,7 +78,6 @@ const MovieGalleryItem = ({ movieId }) => {
         <Link to={`/movies/${movieId}`} />
         <img
           className={css.img}
-          // src={baseImgURL + movie.poster_path}
           src={
             movie.poster_path
               ? baseImgURL + movie.poster_path

@@ -93,21 +93,10 @@ const Searchbar = ({ onSearch }) => {
         <ul>
           {movies.map(movie => (
             <li key={movie.id}>
-              state={{ from: location }}
-              {/* <Link
-                className={css.link}
-                to={`/movies/${movie.id}`}
-
-              >
-                <MovieIcon />
-                {movie.title}
-              </Link> */}
               <Link
                 className={css.link}
-                to={{
-                  pathname: `/movies/${movie.id}`,
-                  state: { from: location.state?.from || location.pathname },
-                }}
+                to={`/movies/${movie.id}`}
+                state={{ from: location }}
               >
                 <MovieIcon />
                 {movie.title}
