@@ -2,7 +2,7 @@ import css from './MovieGalleryItem.module.css';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 // import BackIcon from 'components/Icons/BackIcon';
 
 const MovieGalleryItem = ({ movieId, from }) => {

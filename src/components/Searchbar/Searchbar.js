@@ -1,14 +1,9 @@
 import { useEffect, useState } from 'react';
-import {
-  Link,
-  useNavigate,
-  useLocation,
-  useSearchParams,
-} from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import css from './Searchbar.module.css';
 import MovieIcon from 'components/Icons/MovieIcon';
-import BackIcon from 'components/Icons/BackIcon';
+// import BackIcon from 'components/Icons/BackIcon';
 import SearchIcon from 'components/Icons/SearchIcon';
 
 const Searchbar = ({ onSearch }) => {
@@ -18,7 +13,7 @@ const Searchbar = ({ onSearch }) => {
   const [query, setQuery] = useState('');
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
-  let navigate = useNavigate();
+
   let location = useLocation();
   console.log(location.state);
   const [searchParams, setSearchParams] = useSearchParams();
